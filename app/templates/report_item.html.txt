@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Report Lost Item</title>
+</head>
+<body>
+    <h1>Report a Lost Item</h1>
+    <form method="POST" action="{{ url_for('report_item') }}">
+        {{ form.hidden_tag() }}
+        <p>{{ form.name.label }} {{ form.name(size=32) }}</p>
+        <p>{{ form.description.label }} {{ form.description(cols=32, rows=4) }}</p>
+        <p>{{ form.location.label }} {{ form.location(size=32) }}</p>
+        <p>{{ form.submit() }}</p>
+    </form>
+</body>
+</html>

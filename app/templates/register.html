@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Lost and Found System</title>
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="register-box">
+            <h2>Register</h2>
+
+            <!-- Flash messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <ul class="flash-messages">
+                    {% for category, message in messages %}
+                        <li class="flash {{ category }}">{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+
+            <form method="POST" action="{{ url_for('auth.register') }}">
+                {{ form.hidden_tag() }}
+                <div class="textbox">
+                    <input type="text" name="username" placeholder="Username" required>
+                </div>
+                <div class="textbox">
+                    <input type="email" name="email" placeholder="Email" required>
+                </div>
+                <div class="textbox">
+                    <input type="password" name="password" placeholder="Password" required>
+                </div>
+                <div class="textbox">
+                    <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn">Register</button>
+                </div>
+                <div class="login-link">
+                    Already have an account? <a href="{{ url_for('auth.login') }}">Login here</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
+
+

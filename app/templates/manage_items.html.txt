@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Items</title>
+</head>
+<body>
+    <h1>Manage Reported Items</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Location</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>{{ item.name }}</td>
+                <td>{{ item.description }}</td>
+                <td>{{ item.location }}</td>
+                <td>{{ item.status }}</td>
+                <td>
+                    <form method="POST" action="{{ url_for('update_item', item_id=item.id) }}">
+                        <select name="status">
+                            <option value="lost" {% if item.status == 'lost' %}selected{% endif %}>Lost</option>
+                            <option value="found" {% if item.status == 'found' %}selected{% endif %}>Found</option>
+                        </select>
+                        <button type="submit">Update Status</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
